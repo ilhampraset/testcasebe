@@ -19,7 +19,7 @@ func (o OutletRepository) GetMonthlyRevenueByOutletName(merchantName string, yea
 	var outlets *[]domain.OutletMontlyReport
 	from := fmt.Sprintf("%d-%d-1", year, month)
 	end := fmt.Sprintf("%d-%d-30", year, month)
-	o.db.Debug().Table("merchants").Select("merchants.merchant_name,outlets.outlet_name,sum(transactions.bill_total) as revenue, transactions.created_at").
+	o.db.Table("merchants").Select("merchants.merchant_name,outlets.outlet_name,sum(transactions.bill_total) as revenue, transactions.created_at").
 		Joins("inner join users on users.id = merchants.user_id").
 		Joins("inner join outlets on outlets.merchant_id = merchants.id").
 		Joins("inner join transactions on transactions.outlet_id = outlets.id").

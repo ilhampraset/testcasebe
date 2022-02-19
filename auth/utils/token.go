@@ -29,7 +29,7 @@ type JwtUtil struct {
 func JWTAuth() Token {
 	return &JwtUtil{
 		secretKey: getSecretKey(),
-		issure:    "Bikash",
+		issure:    "jinro",
 	}
 }
 
